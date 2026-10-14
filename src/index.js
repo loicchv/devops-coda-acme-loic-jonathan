@@ -1,3 +1,5 @@
+const os = require("os");
+
 const http = require("http");
 const { add } = require("./math");
 
@@ -106,6 +108,16 @@ const server = http.createServer((req, res) => {
         "Content-Type": "text/plain; version=0.0.4; charset=utf-8"
       });
       res.end(body);
+      return;
+    }
+
+    if (path === "/version") {
+      writeJson(res, 200, {
+        version: "1.1.0",
+        nodeVersion: process.version,
+        hostname: os.hostname(),
+        environment: process.env.APP_ENV || "unknown"
+      });
       return;
     }
 
