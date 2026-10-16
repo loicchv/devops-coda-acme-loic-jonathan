@@ -123,7 +123,7 @@ const server = http.createServer((req, res) => {
 
     if (path === "/ready") {
       writeJson(res, 200, {
-        ready: true
+           status: "ready"
       });
       return;
     }
